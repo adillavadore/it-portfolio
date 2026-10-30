@@ -2,54 +2,77 @@
 ## Sales Activity Tracking System
 
 ### 1. Project Overview
-This project aims to develop a centralized shipment tracking system that allows customers and internal operational teams to monitor shipment status throughout the delivery process.
+The Sales Activity Tracking System is designed to help sales teams and management monitor sales activities, customer visits, business opportunities, and follow-up actions through a centralized platform.
 
-### 2. Business Problem
-The existing shipment tracking process may involve fragmented information, manual status updates, and limited shipment visibility for customers.
+### 2. Business Background
+Sales activities are essential for maintaining customer relationships and generating new business opportunities.
+
+However, without a centralized monitoring system, management may face difficulties tracking sales visits, evaluating sales performance, monitoring follow-up activities, and obtaining accurate sales activity reports.
+
+This project aims to improve sales activity visibility, accountability, and reporting efficiency.
 
 ### 3. Project Objectives
-- Improve shipment visibility.
-- Provide real-time or timely shipment status updates.
-- Reduce customer inquiries related to shipment status.
-- Improve operational monitoring and efficiency.
+- Centralize sales activity records.
+- Monitor customer visits and meeting outcomes.
+- Improve follow-up activity monitoring.
+- Provide management with sales activity reports.
+- Improve sales team productivity and accountability.
 
 ### 4. Project Scope
 
 **In Scope**
-- Shipment tracking by tracking number.
-- Shipment status monitoring.
-- Delivery status updates.
-- Customer tracking interface.
-- Internal operational monitoring.
+- Sales employee login.
+- Customer visit planning and recording.
+- Customer visit activity reporting.
+- Meeting outcome documentation.
+- Follow-up activity tracking.
+- Sales activity dashboard.
+- Management reporting.
 
 **Out of Scope**
-- Payment gateway integration.
-- Warehouse inventory management.
-- Route optimization.
+- Sales commission calculation.
+- Invoice and payment processing.
+- Inventory management.
+- Full CRM implementation.
 
 ### 5. Key Stakeholders
 - Project Sponsor
+- Sales Manager
+- Sales Supervisor
+- Sales Representatives
 - IT Project Manager
 - Business Analyst
 - System Analyst
 - Development Team
-- Operations Team
-- Customer Service Team
-- Customers
+- IT Support Team
 
 ### 6. Expected Deliverables
+- Project Charter
 - Business Requirement Document (BRD)
 - Functional Requirement Specification (FRS)
-- Business Process Flow
-- System Architecture
+- As-Is and To-Be Business Process
+- System Flow Diagram
+- System Design Documentation
 - Project Plan
-- Testing Documentation
+- Test Scenarios and UAT Documentation
 
 ### 7. Success Criteria
-- Customers can check shipment status using a tracking number.
-- Internal teams can monitor shipment progress.
-- Shipment information is consistently updated.
-- Customer inquiries related to tracking are reduced.
+- Sales representatives can record customer visits.
+- Sales managers can monitor sales activities.
+- Follow-up activities can be tracked.
+- Management can access consolidated sales activity reports.
+- Manual reporting activities are reduced.
 
 ### 8. Project Assumptions
-This is a simulated portfolio project. All business scenarios and requirements are fictional and created for demonstration purposes.
+- Sales representatives have access to the system.
+- Customer information is available and maintained.
+- Management defines the required sales activity indicators.
+- The project is developed as a simulated portfolio case.
+
+### 9. Project Constraints
+- Limited project resources and development time.
+- User adoption and training requirements.
+- Data accuracy depends on timely user input.
+
+### 10. Project Disclaimer
+This is a simulated portfolio project created for professional demonstration and learning purposes. All business scenarios, requirements, and data are fictional.
