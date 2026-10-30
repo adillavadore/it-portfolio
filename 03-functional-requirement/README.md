@@ -263,37 +263,48 @@ The system shall allow authorized users to manage customer status.
 - Important status changes must be recorded in the activity log.
 - Status transition rules require business stakeholder approval.
 
-#### FR-033: Customer Assignment
+#### FR-033: Automatic Customer Ownership Reassignment
 
 **Description:**
 
-The system shall allow authorized users to assign customers to Account Managers.
+The system shall automatically reassign customer ownership when the Sales Planning team updates the Employee ID associated with an existing Sales ID.
 
-**Process:**
-1. Authorized user selects a customer.
-2. User selects an Account Manager.
-3. System validates the assignment.
-4. System saves the assigned Account Manager.
+**Preconditions:**
+- The new Account Manager (AM B) must already have an active user account.
+- The required Sales ID and user access configuration for AM B must be registered in the system.
+- The Sales Planning team must have authorized access to update employee mapping.
 
-**Output:**
-- Customer assignment is updated.
-- The assigned Account Manager can access the customer according to permissions.
+**Business Process:**
 
-#### FR-034: Customer Search and Filter
+1. Sales Planning identifies the Account Manager reassignment.
+2. Sales Planning verifies that AM B has an active user account and the required Sales ID configuration.
+3. Sales Planning updates the Employee ID associated with the existing Sales ID.
+4. The system retrieves the updated Sales ID and Employee ID mapping.
+5. The system immediately updates customer ownership for all customers associated with the affected Sales ID.
+6. AM B receives access to the reassigned customer records.
+7. AM A loses access to the reassigned customer records, unless separately authorized.
 
-**Description:**
+**Business Rules:**
 
-The system shall provide customer search and filtering functionality.
+- The existing Sales ID remains unchanged during reassignment.
+- Employee ID is updated according to the latest Sales Planning mapping.
+- Customer ownership is determined by the active Sales ID and Employee ID mapping.
+- All customers associated with the affected Sales ID are reassigned automatically.
+- Reassignment takes effect immediately after a successful mapping update.
+- Only authorized Sales Planning users can update the mapping.
+- Historical visit records must retain the original visiting employee identity.
+- All mapping changes must be recorded in an audit log.
 
-**Search and Filter Criteria:**
-- Customer name.
-- Customer ID.
-- Customer status.
-- Assigned Account Manager.
+**Acceptance Criteria:**
 
-**Output:**
-- Customer records matching the selected criteria.
-
+- AM B must have an active user account before reassignment.
+- Sales Planning can update the Employee ID mapping.
+- The existing Sales ID remains unchanged.
+- All associated customers automatically reflect the new Account Manager.
+- AM B can access the reassigned customer records.
+- AM A cannot access the reassigned customer records unless separately authorized.
+- Historical visit records remain associated with the original visiting employee.
+- The system records the previous mapping, updated mapping, timestamp, and responsible user.
 ### 3.4 Business Rules
 
 - Each customer must have a unique Customer ID.
