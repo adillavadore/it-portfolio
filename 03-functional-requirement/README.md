@@ -763,5 +763,196 @@ The module will be considered acceptable when:
 
 ---
 
+## 5. GPS Check-in & Check-out
+
+### 5.1 Module Overview
+
+This module enables Account Managers to validate customer visits through GPS-based check-in and check-out using the Android Mobile Application.
+
+The system captures GPS coordinates and timestamps to record the Account Manager's location during customer visits.
+
+A customer visit must be within a maximum radius of 100 meters from the registered customer location to satisfy the GPS location validation requirement.
+
+### 5.2 GPS Visit Information
+
+| Field | Description |
+|---|---|
+| Visit ID | Unique visit identifier |
+| Customer ID | Customer identifier |
+| Customer Name | Customer name |
+| Account Manager | Responsible employee |
+| Check-in Latitude | GPS latitude at check-in |
+| Check-in Longitude | GPS longitude at check-in |
+| Check-in Timestamp | Check-in date and time |
+| Check-in Photo | Photo captured during check-in |
+| Check-out Latitude | GPS latitude at check-out |
+| Check-out Longitude | GPS longitude at check-out |
+| Check-out Timestamp | Check-out date and time |
+| GPS Accuracy | GPS accuracy information |
+| Visit Validation Status | GPS validation result |
+
+### 5.3 Functional Requirements
+
+#### FR-042: GPS Check-in
+
+**Description:**
+
+The Android application shall allow Account Managers to perform GPS-based check-in when arriving at a scheduled customer location.
+
+**Preconditions:**
+- Account Manager must be logged in.
+- A valid customer visit schedule must exist.
+- Device location permission must be enabled.
+- Internet connectivity must be available.
+
+**Process:**
+1. Account Manager selects an existing visit schedule.
+2. Account Manager selects Check-in.
+3. System requests the device's current GPS location.
+4. System captures latitude, longitude, and timestamp.
+5. System calculates the distance between the current GPS location and the registered customer location.
+6. System validates the distance against the 100-meter radius.
+7. System checks GPS accuracy.
+8. Account Manager captures a check-in photo.
+9. System saves the GPS information, timestamp, photo, and visit validation result when all mandatory validations are satisfied.
+
+**Output:**
+- Recorded GPS coordinates.
+- Check-in timestamp.
+- Check-in photo.
+- GPS validation result.
+- Updated visit status.
+
+#### FR-043: GPS Radius Validation
+
+**Description:**
+
+The system shall validate the Account Manager's GPS location against the registered customer location.
+
+**Business Rules:**
+- The maximum permitted distance is 100 meters.
+- The distance shall be calculated using the current GPS coordinates and registered customer coordinates.
+- Check-in outside the permitted radius shall not be accepted as a valid visit check-in.
+- The system shall display an appropriate warning when the Account Manager is outside the permitted radius.
+- The validation result must be recorded.
+
+**Output:**
+- Valid location: GPS radius validation successful.
+- Invalid location: System displays a location validation warning.
+
+#### FR-044: GPS Accuracy Warning
+
+**Description:**
+
+The system shall monitor GPS accuracy during check-in and check-out operations.
+
+**Process:**
+1. System retrieves GPS coordinates and accuracy information.
+2. System evaluates the GPS accuracy against the configured accuracy threshold.
+3. If GPS accuracy is insufficient, the system displays a warning.
+4. Account Manager is requested to retry GPS location detection.
+5. System repeats the GPS accuracy validation.
+
+**Business Rules:**
+- GPS accuracy warnings must be displayed to the Account Manager.
+- The system must allow the Account Manager to retry location detection.
+- GPS accuracy thresholds must be configurable.
+- The system must not classify an inaccurate GPS reading as a validated location without satisfying the configured validation rules.
+
+#### FR-045: Check-in Photo Capture
+
+**Description:**
+
+The Android application shall require an Account Manager to capture a photo during customer visit check-in.
+
+**Process:**
+1. Account Manager selects Check-in.
+2. System requests GPS validation.
+3. Account Manager captures a photo using the device camera.
+4. System associates the photo with the relevant visit record.
+5. System stores the photo reference and check-in information.
+
+**Business Rules:**
+- A check-in photo is mandatory.
+- The photo must be associated with the relevant Visit ID.
+- The system must record the check-in timestamp.
+- Photo access must follow authorized user permissions.
+- Photo storage and retention must follow applicable company policies.
+
+#### FR-046: GPS Check-out
+
+**Description:**
+
+The Android application shall allow Account Managers to perform GPS-based check-out after completing a customer visit.
+
+**Preconditions:**
+- A valid check-in record must exist.
+- The visit must not already be checked out.
+- Device location permission must be available.
+
+**Process:**
+1. Account Manager selects Check-out.
+2. System requests the current GPS location.
+3. System captures latitude and longitude.
+4. System records the check-out timestamp.
+5. System validates GPS accuracy and location radius.
+6. System saves the check-out information.
+7. System updates the visit status.
+
+**Output:**
+- Check-out GPS coordinates.
+- Check-out timestamp.
+- GPS validation result.
+- Updated visit status.
+
+#### FR-047: GPS Visit History
+
+**Description:**
+
+The system shall maintain GPS check-in and check-out information for each completed customer visit.
+
+**Information to be maintained:**
+- Visit ID.
+- Customer information.
+- Account Manager information.
+- Check-in location.
+- Check-in timestamp.
+- Check-in photo.
+- Check-out location.
+- Check-out timestamp.
+- GPS validation status.
+
+**Output:**
+Authorized users can review GPS visit information through the Web Application.
+
+### 5.4 Business Rules
+
+- GPS check-in must be associated with an existing visit schedule.
+- GPS check-in must be performed within 100 meters of the registered customer location.
+- A check-in photo is mandatory.
+- GPS coordinates and timestamps must be recorded.
+- GPS accuracy warnings must be displayed when the configured threshold is not met.
+- Account Managers must retry GPS detection when an accuracy warning occurs.
+- Check-out must be performed after a valid check-in.
+- Check-out must record GPS coordinates and timestamp.
+- GPS information must be associated with the relevant Visit ID.
+- GPS records must be protected against unauthorized modification.
+- GPS data and visit photos must be accessible only to authorized users.
+
+### 5.5 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Account Managers can perform GPS check-in for scheduled visits.
+- The system captures GPS coordinates and timestamps.
+- The system validates the 100-meter customer location radius.
+- The system rejects check-in outside the permitted radius as a valid visit.
+- Account Managers must capture a photo during check-in.
+- GPS accuracy warnings are displayed when necessary.
+- Account Managers can retry GPS detection.
+- Account Managers can perform GPS check-out after check-in.
+- Check-out GPS coordinates and timestamps are recorded.
+- GPS visit records can be reviewed by authorized users through the Web Application.
+
 ---
 
