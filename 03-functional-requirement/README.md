@@ -1178,6 +1178,256 @@ The module will be considered acceptable when:
 - Authorized users can view historical visit activities through the Web Application.
 - Visit information and attachments are associated with the correct customer and Visit ID.
 
+---
+
+## 7. Sales Manager Dashboard & Monitoring
+
+### 7.1 Module Overview
+
+This module provides a centralized dashboard through the Web Application to enable Sales Managers to monitor sales activities, customer development, Account Manager performance, and follow-up progress.
+
+The dashboard shall provide both team-level summaries and individual Account Manager activity details.
+
+### 7.2 Dashboard Views
+
+The system shall provide two dashboard views.
+
+**A. Team Summary**
+
+Displays consolidated sales activity information across the authorized Sales Manager's team.
+
+Information includes:
+- Total visit activities.
+- Completed visits.
+- Planned visits.
+- Cancelled visits.
+- Customer status distribution.
+- Pending follow-up activities.
+- Overdue follow-up activities.
+- Business opportunities.
+- Visit activity by Account Manager.
+
+**B. Account Manager Detail**
+
+Displays individual Account Manager activity information.
+
+Information includes:
+- Account Manager identity.
+- Total visits.
+- Completed visits.
+- Planned visits.
+- Cancelled visits.
+- Customer portfolio and status.
+- Pending follow-up activities.
+- Overdue follow-up activities.
+- Business opportunities.
+- Visit outcomes.
+
+### 7.3 KPI Definitions
+
+| KPI | Description |
+|---|---|
+| Total Visit | Total visit schedules and activities within the selected date range |
+| Completed Visit | Number of visits successfully completed and recorded |
+| Planned Visit | Number of scheduled visits that have not yet been completed or cancelled |
+| Cancelled Visit | Number of visits with Cancelled status |
+| Customer Status | Customer distribution by Proposed, Prospect, Current, Inactive, and Lost |
+| Follow-up Pending | Follow-up activities that are not yet completed and are not overdue |
+| Follow-up Overdue | Follow-up activities with due dates earlier than the current date and not yet completed |
+| Visit by Account Manager | Number of visit activities grouped by Account Manager |
+| Business Opportunity | Number of visits recorded with Business Opportunity as the visit outcome |
+
+### 7.4 Functional Requirements
+
+#### FR-054: Sales Manager Dashboard
+
+**Description:**
+
+The Web Application shall provide a Sales Manager dashboard containing consolidated sales activity information.
+
+**Process:**
+1. Authorized user accesses the Web Application.
+2. User opens the Sales Activity Dashboard.
+3. System retrieves authorized sales activity data.
+4. System calculates dashboard KPIs.
+5. System displays team-level sales activity information.
+
+**Output:**
+- Team summary dashboard.
+- KPI indicators.
+- Sales activity overview.
+
+#### FR-055: Team Summary Dashboard
+
+**Description:**
+
+The system shall display consolidated sales activity information for the authorized Sales Manager's team.
+
+**Information to be displayed:**
+- Total visits.
+- Completed visits.
+- Planned visits.
+- Cancelled visits.
+- Customer status distribution.
+- Pending follow-ups.
+- Overdue follow-ups.
+- Business opportunities.
+- Visit activity by Account Manager.
+
+**Business Rules:**
+- Dashboard information must follow the Sales Manager's authorized team scope.
+- KPI values must be calculated from recorded system data.
+- Dashboard data must reflect the latest available information.
+
+#### FR-056: Account Manager Activity Detail
+
+**Description:**
+
+The system shall allow Sales Managers to view detailed sales activity information for individual Account Managers.
+
+**Process:**
+1. Sales Manager accesses the dashboard.
+2. Sales Manager selects an Account Manager.
+3. System retrieves the selected Account Manager's authorized activity records.
+4. System displays individual activity details.
+
+**Output:**
+- Individual visit summary.
+- Visit outcome distribution.
+- Customer portfolio information.
+- Follow-up activity status.
+- Business opportunity information.
+
+#### FR-057: Customer Status Monitoring
+
+**Description:**
+
+The system shall provide customer status monitoring through the dashboard.
+
+**Customer Status Categories:**
+- Proposed.
+- Prospect.
+- Current.
+- Inactive.
+- Lost.
+
+**Output:**
+- Total customers by status.
+- Customer status distribution.
+- Customer information according to user permissions.
+
+#### FR-058: Follow-up Monitoring
+
+**Description:**
+
+The system shall provide visibility into pending and overdue follow-up activities.
+
+**Information to be displayed:**
+- Customer name.
+- Account Manager.
+- Follow-up action.
+- Follow-up due date.
+- Follow-up status.
+
+**Business Rules:**
+- Pending follow-ups are activities that remain incomplete and have not passed their due dates.
+- Overdue follow-ups are incomplete activities with due dates earlier than the current date.
+- Completed follow-ups must not be included in pending or overdue totals.
+
+#### FR-059: Business Opportunity Monitoring
+
+**Description:**
+
+The system shall display business opportunities identified through customer visit activities.
+
+**Information to be displayed:**
+- Customer name.
+- Account Manager.
+- Visit date.
+- Visit notes.
+- Visit outcome.
+- Follow-up action.
+- Follow-up due date.
+
+**Business Rules:**
+- Business opportunities are identified from visits with the Business Opportunity outcome.
+- Each opportunity must be associated with a customer and Account Manager.
+- Opportunity information must be available to authorized users.
+
+#### FR-060: Dashboard Filtering
+
+**Description:**
+
+The system shall allow authorized users to filter dashboard information based on selected criteria.
+
+**Available Filters:**
+- Date Range.
+- Account Manager.
+- Customer Status.
+- Customer Name.
+- Visit Outcome.
+
+**Process:**
+1. User opens the dashboard.
+2. User selects one or more filter criteria.
+3. User applies the selected filters.
+4. System retrieves matching records.
+5. System recalculates dashboard KPIs.
+6. System refreshes the dashboard information.
+
+**Output:**
+- Dashboard information based on selected filters.
+- Updated KPI values.
+- Filtered activity details.
+
+#### FR-061: Dashboard Data Navigation
+
+**Description:**
+
+The system shall allow authorized users to navigate from dashboard KPI summaries to relevant detailed records.
+
+**Process:**
+1. User selects a KPI indicator or dashboard section.
+2. System retrieves the corresponding underlying records.
+3. System displays the relevant detailed information.
+
+**Output:**
+- Detailed visit records.
+- Customer records.
+- Follow-up records.
+- Business opportunity records.
+
+### 7.5 Business Rules
+
+- Dashboard access must follow user role and data authorization.
+- Sales Managers may view activities within their authorized team scope.
+- Account Managers may access their own authorized activity information.
+- Management may access consolidated information according to assigned permissions.
+- KPI calculations must use consistent business definitions.
+- Cancelled visits must not be counted as completed visits.
+- Completed visits must have valid visit records.
+- Follow-up pending and overdue calculations must use the current system date.
+- Business opportunity counts must be based on recorded Business Opportunity outcomes.
+- Dashboard filters must apply consistently to relevant KPI values and detail records.
+- Customer status distribution must be calculated from the customer records available within the selected access scope.
+
+### 7.6 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Authorized users can access the Sales Activity Dashboard.
+- Sales Managers can view consolidated team summaries.
+- Sales Managers can view individual Account Manager details.
+- The dashboard displays all agreed KPIs.
+- Customer status distribution is displayed correctly.
+- Pending and overdue follow-ups are calculated correctly.
+- Business opportunities can be monitored.
+- Users can filter dashboard data by the agreed criteria.
+- KPI values refresh based on the selected filters.
+- Users can navigate from KPI summaries to relevant detailed records.
+- Dashboard data follows assigned user permissions.
+
+
 
 
 ---
