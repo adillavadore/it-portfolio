@@ -140,3 +140,181 @@ This specification is part of the simulated Sales Activity Tracking System portf
 The detailed authentication mechanism, password policy, session expiration, and integration requirements will be defined during system design.
 
 All business scenarios and user information are fictional.
+
+---
+
+## 3. Customer Management
+
+### 3.1 Module Overview
+
+This module manages customer information and customer status within the Sales Activity Tracking System.
+
+The module enables Account Managers to access their assigned customer information and allows authorized users to manage customer records and monitor customer development.
+
+### 3.2 Customer Information
+
+The system shall maintain the following customer information:
+
+| Field | Description |
+|---|---|
+| Customer ID | Unique customer identifier |
+| Customer Name | Customer or company name |
+| Customer Address | Customer business address |
+| Contact Person | Main customer contact |
+| Contact Number | Customer contact number |
+| Email Address | Customer email |
+| Customer Status | Proposed, Prospect, Current, Inactive, or Lost |
+| Assigned Account Manager | Responsible Account Manager |
+| Created Date | Customer record creation date |
+
+### 3.3 Functional Requirements
+
+#### FR-028: View Customer List
+
+**Description:**
+
+The system shall allow authorized users to view customer records.
+
+**Input:**
+- Search keyword.
+- Customer status filter.
+- Account Manager filter (where authorized).
+
+**Process:**
+1. User opens the Customer menu.
+2. System retrieves customer records according to user permissions.
+3. System displays the customer list.
+4. User can search and filter customer information.
+
+**Output:**
+- Customer list displayed according to access permissions.
+
+#### FR-029: View Customer Details
+
+**Description:**
+
+The system shall allow authorized users to view detailed customer information.
+
+**Output:**
+- Customer profile.
+- Contact information.
+- Customer status.
+- Assigned Account Manager.
+- Customer visit history, subject to permissions.
+
+#### FR-030: Create Customer
+
+**Description:**
+
+The system shall allow authorized users to register new customer information.
+
+**Input:**
+- Customer name.
+- Customer address.
+- Contact person.
+- Contact number.
+- Email address.
+- Customer status.
+- Assigned Account Manager.
+
+**Process:**
+1. User selects Add Customer.
+2. User enters customer information.
+3. System validates mandatory fields.
+4. System checks customer record completeness.
+5. System saves the customer record.
+
+**Output:**
+- Customer record successfully created.
+- New customer appears in the customer list.
+
+#### FR-031: Update Customer Information
+
+**Description:**
+
+The system shall allow authorized users to update customer information.
+
+**Process:**
+1. User selects an existing customer.
+2. User selects Edit.
+3. User updates permitted customer information.
+4. System validates the updated information.
+5. System saves the changes.
+
+**Output:**
+- Updated customer information is displayed.
+
+#### FR-032: Customer Status Management
+
+**Description:**
+
+The system shall allow authorized users to manage customer status.
+
+**Available Statuses:**
+- Proposed
+- Prospect
+- Current
+- Inactive
+- Lost
+
+**Business Rules:**
+- Each customer must have one current status.
+- Status changes must be performed by authorized users.
+- Important status changes must be recorded in the activity log.
+- Status transition rules require business stakeholder approval.
+
+#### FR-033: Customer Assignment
+
+**Description:**
+
+The system shall allow authorized users to assign customers to Account Managers.
+
+**Process:**
+1. Authorized user selects a customer.
+2. User selects an Account Manager.
+3. System validates the assignment.
+4. System saves the assigned Account Manager.
+
+**Output:**
+- Customer assignment is updated.
+- The assigned Account Manager can access the customer according to permissions.
+
+#### FR-034: Customer Search and Filter
+
+**Description:**
+
+The system shall provide customer search and filtering functionality.
+
+**Search and Filter Criteria:**
+- Customer name.
+- Customer ID.
+- Customer status.
+- Assigned Account Manager.
+
+**Output:**
+- Customer records matching the selected criteria.
+
+### 3.4 Business Rules
+
+- Each customer must have a unique Customer ID.
+- Customer name and required customer information must be provided.
+- Each customer must have a defined customer status.
+- Customer access must follow assigned user permissions.
+- Customer assignment changes must be restricted to authorized users.
+- Customer records must be retained according to applicable data retention policies.
+
+### 3.5 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Authorized users can view customer lists.
+- Users can search and filter customer records.
+- Authorized users can view customer details.
+- Authorized users can create customer records.
+- Authorized users can update customer information.
+- Customer status can be managed by authorized users.
+- Customers can be assigned to Account Managers.
+- Unauthorized users cannot access restricted customer records.
+
+---
+
