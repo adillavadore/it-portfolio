@@ -305,6 +305,7 @@ The system shall automatically reassign customer ownership when the Sales Planni
 - AM A cannot access the reassigned customer records unless separately authorized.
 - Historical visit records remain associated with the original visiting employee.
 - The system records the previous mapping, updated mapping, timestamp, and responsible user.
+- 
 ### 3.4 Business Rules
 
 - Each customer must have a unique Customer ID.
@@ -326,6 +327,441 @@ The module will be considered acceptable when:
 - Customer status can be managed by authorized users.
 - Customers can be assigned to Account Managers.
 - Unauthorized users cannot access restricted customer records.
+
+---
+---
+
+## 4. Visit Planning & Calendar
+
+### 4.1 Module Overview
+
+This module enables Account Managers to plan and manage customer visits through the Android Mobile Application.
+
+The system provides a monthly calendar to display scheduled customer visits and allows authorized users to create, reschedule, and cancel visit schedules.
+
+Sales Managers can also monitor and manage visit schedules according to their assigned permissions.
+
+### 4.2 User Roles
+
+| User Role | Responsibility |
+|---|---|
+| Account Manager | Create, view, reschedule, and cancel assigned visit schedules |
+| Sales Manager | View, monitor, reschedule, and cancel team visit schedules |
+
+### 4.3 Visit Schedule Information
+
+The system shall maintain the following visit schedule information:
+
+| Field | Description |
+|---|---|
+| Visit ID | Unique visit schedule identifier |
+| Customer ID | Customer identifier |
+| Customer Name | Customer or company name |
+| Sales ID | Assigned sales identifier |
+| Employee ID | Responsible Account Manager |
+| Visit Date | Planned visit date |
+| Start Time | Planned visit start time |
+| End Time | Planned visit end time |
+| Visit Purpose | Selected visit purpose category |
+| Additional Notes | Additional visit description |
+| Visit Status | Current schedule status |
+| Created Date | Schedule creation timestamp |
+
+### 4.4 Functional Requirements
+
+#### FR-035: Monthly Visit Calendar
+
+**Description:**
+
+The Android application shall provide a monthly calendar to display customer visit schedules.
+
+**Process:**
+1. Account Manager opens the Visit Planning menu.
+2. System displays the current monthly calendar.
+3. System retrieves visit schedules assigned to the Account Manager.
+4. Scheduled visits are displayed on their respective dates.
+5. User selects a calendar date to view visit details.
+
+**Output:**
+- Monthly calendar.
+- Visit schedules by date.
+- Visit details for selected dates.
+
+#### FR-036: Create Visit Schedule
+
+**Description:**
+
+The system shall allow Account Managers to create customer visit schedules through the Android application.
+
+**Input:**
+- Customer.
+- Visit date.
+- Start time.
+- End time.
+- Visit purpose category.
+- Additional notes (optional).
+
+**Process:**
+1. Account Manager selects a customer.
+2. Account Manager selects the planned visit date.
+3. Account Manager enters the visit time.
+4. Account Manager selects a visit purpose category.
+5. Account Manager enters additional notes if necessary.
+6. System validates the submitted information.
+7. System checks whether the customer already has a visit schedule on the selected date.
+8. System saves the visit schedule if validation is successful.
+
+**Output:**
+- Visit schedule successfully created.
+- New schedule appears in the monthly calendar.
+
+#### FR-037: Duplicate Customer Visit Validation
+
+**Description:**
+
+The system shall prevent an Account Manager from creating more than one visit schedule for the same customer on the same date.
+
+**Business Rules:**
+- One customer can only have one active visit schedule per calendar date.
+- Different visit times do not permit a second schedule for the same customer on the same date.
+- The validation shall consider existing active schedules.
+- Cancelled schedules shall not count as active schedules.
+- The system shall display an appropriate warning when a duplicate schedule is detected.
+
+**Output:**
+
+The system displays a duplicate visit warning and does not save the additional schedule.
+
+#### FR-038: View Visit Schedule Details
+
+**Description:**
+
+The system shall allow authorized users to view detailed information about scheduled visits.
+
+**Output:**
+- Customer information.
+- Visit date and time.
+- Visit purpose.
+- Additional notes.
+- Assigned Account Manager.
+- Visit status.
+
+#### FR-039: Reschedule Visit
+
+**Description:**
+
+The system shall allow Account Managers and authorized Sales Managers to change existing visit schedules.
+
+**Process:**
+1. User selects an existing visit schedule.
+2. User selects Reschedule.
+3. User enters the new visit date and time.
+4. System validates the updated schedule.
+5. System checks duplicate customer visit restrictions.
+6. System saves the updated schedule.
+7. System updates the monthly calendar.
+
+**Business Rules:**
+- Account Managers may reschedule their assigned visits.
+- Sales Managers may reschedule visits within their authorized team scope.
+- The system must retain the original schedule information for audit purposes.
+- Duplicate visit validation must be applied to the new date.
+
+**Output:**
+- Updated visit schedule.
+- Updated monthly calendar.
+
+#### FR-040: Cancel Visit Schedule
+
+**Description:**
+
+The system shall allow Account Managers and authorized Sales Managers to cancel existing visit schedules.
+
+**Process:**
+1. User selects an existing visit schedule.
+2. User selects Cancel Visit.
+3. User provides a cancellation reason.
+4. System updates the visit status to Cancelled.
+5. System records the cancellation information.
+
+**Business Rules:**
+- Only authorized users can cancel visit schedules.
+- Cancelled schedules must remain available in historical records.
+- Cancelled schedules shall not be treated as active visits.
+- Cancellation information must be recorded in the audit log.
+
+**Output:**
+- Visit status updated to Cancelled.
+- Cancellation information recorded.
+
+#### FR-041: Visit Purpose Management
+
+**Description:**
+
+The system shall allow Account Managers to select a predefined visit purpose category and provide additional notes.
+
+**Proposed Visit Purpose Categories:**
+- Customer Relationship Management.
+- Business Opportunity Discussion.
+- Service Review.
+- Complaint Handling.
+- Contract Discussion.
+- New Business Development.
+- Other.
+
+**Business Rules:**
+- Account Managers must select one visit purpose category.
+- Additional notes may be entered to provide more context.
+- When Other is selected, additional notes should explain the visit purpose.
+
+**Output:**
+- Selected visit purpose category.
+- Additional visit description.
+
+### 4.5 Business Rules
+
+- Every visit schedule must be associated with a valid customer.
+- Every visit schedule must have an assigned Account Manager.
+- Each customer may have only one active scheduled visit per calendar date.
+- Visit date and time are mandatory.
+- Visit purpose category is mandatory.
+- Additional notes are optional except when Other is selected.
+- Rescheduling and cancellation are restricted to authorized users.
+- Changes to visit schedules must be recorded in the audit log.
+- Visit schedules must be available to authorized users through the centralized system.
+
+### 4.6 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Account Managers can access the monthly calendar.
+- Account Managers can create customer visit schedules.
+- The system prevents duplicate active visit schedules for the same customer on the same date.
+- Visit schedules are displayed on the correct calendar dates.
+- Authorized Account Managers and Sales Managers can reschedule visits.
+- Authorized Account Managers and Sales Managers can cancel visits.
+- The system records cancellation reasons.
+- Visit purpose categories can be selected.
+- Additional visit notes can be entered.
+- Schedule changes are recorded for audit purposes.
+
+---
+
+## 4. Visit Planning & Calendar
+
+### 4.1 Module Overview
+
+This module enables Account Managers to plan and manage customer visits through the Android Mobile Application.
+
+The system provides a monthly calendar to display scheduled customer visits and allows authorized users to create, reschedule, and cancel visit schedules.
+
+Sales Managers can also monitor and manage visit schedules according to their assigned permissions.
+
+### 4.2 User Roles
+
+| User Role | Responsibility |
+|---|---|
+| Account Manager | Create, view, reschedule, and cancel assigned visit schedules |
+| Sales Manager | View, monitor, reschedule, and cancel team visit schedules |
+
+### 4.3 Visit Schedule Information
+
+The system shall maintain the following visit schedule information:
+
+| Field | Description |
+|---|---|
+| Visit ID | Unique visit schedule identifier |
+| Customer ID | Customer identifier |
+| Customer Name | Customer or company name |
+| Sales ID | Assigned sales identifier |
+| Employee ID | Responsible Account Manager |
+| Visit Date | Planned visit date |
+| Start Time | Planned visit start time |
+| End Time | Planned visit end time |
+| Visit Purpose | Selected visit purpose category |
+| Additional Notes | Additional visit description |
+| Visit Status | Current schedule status |
+| Created Date | Schedule creation timestamp |
+
+### 4.4 Functional Requirements
+
+#### FR-035: Monthly Visit Calendar
+
+**Description:**
+
+The Android application shall provide a monthly calendar to display customer visit schedules.
+
+**Process:**
+1. Account Manager opens the Visit Planning menu.
+2. System displays the current monthly calendar.
+3. System retrieves visit schedules assigned to the Account Manager.
+4. Scheduled visits are displayed on their respective dates.
+5. User selects a calendar date to view visit details.
+
+**Output:**
+- Monthly calendar.
+- Visit schedules by date.
+- Visit details for selected dates.
+
+#### FR-036: Create Visit Schedule
+
+**Description:**
+
+The system shall allow Account Managers to create customer visit schedules through the Android application.
+
+**Input:**
+- Customer.
+- Visit date.
+- Start time.
+- End time.
+- Visit purpose category.
+- Additional notes (optional).
+
+**Process:**
+1. Account Manager selects a customer.
+2. Account Manager selects the planned visit date.
+3. Account Manager enters the visit time.
+4. Account Manager selects a visit purpose category.
+5. Account Manager enters additional notes if necessary.
+6. System validates the submitted information.
+7. System checks whether the customer already has a visit schedule on the selected date.
+8. System saves the visit schedule if validation is successful.
+
+**Output:**
+- Visit schedule successfully created.
+- New schedule appears in the monthly calendar.
+
+#### FR-037: Duplicate Customer Visit Validation
+
+**Description:**
+
+The system shall prevent an Account Manager from creating more than one visit schedule for the same customer on the same date.
+
+**Business Rules:**
+- One customer can only have one active visit schedule per calendar date.
+- Different visit times do not permit a second schedule for the same customer on the same date.
+- The validation shall consider existing active schedules.
+- Cancelled schedules shall not count as active schedules.
+- The system shall display an appropriate warning when a duplicate schedule is detected.
+
+**Output:**
+
+The system displays a duplicate visit warning and does not save the additional schedule.
+
+#### FR-038: View Visit Schedule Details
+
+**Description:**
+
+The system shall allow authorized users to view detailed information about scheduled visits.
+
+**Output:**
+- Customer information.
+- Visit date and time.
+- Visit purpose.
+- Additional notes.
+- Assigned Account Manager.
+- Visit status.
+
+#### FR-039: Reschedule Visit
+
+**Description:**
+
+The system shall allow Account Managers and authorized Sales Managers to change existing visit schedules.
+
+**Process:**
+1. User selects an existing visit schedule.
+2. User selects Reschedule.
+3. User enters the new visit date and time.
+4. System validates the updated schedule.
+5. System checks duplicate customer visit restrictions.
+6. System saves the updated schedule.
+7. System updates the monthly calendar.
+
+**Business Rules:**
+- Account Managers may reschedule their assigned visits.
+- Sales Managers may reschedule visits within their authorized team scope.
+- The system must retain the original schedule information for audit purposes.
+- Duplicate visit validation must be applied to the new date.
+
+**Output:**
+- Updated visit schedule.
+- Updated monthly calendar.
+
+#### FR-040: Cancel Visit Schedule
+
+**Description:**
+
+The system shall allow Account Managers and authorized Sales Managers to cancel existing visit schedules.
+
+**Process:**
+1. User selects an existing visit schedule.
+2. User selects Cancel Visit.
+3. User provides a cancellation reason.
+4. System updates the visit status to Cancelled.
+5. System records the cancellation information.
+
+**Business Rules:**
+- Only authorized users can cancel visit schedules.
+- Cancelled schedules must remain available in historical records.
+- Cancelled schedules shall not be treated as active visits.
+- Cancellation information must be recorded in the audit log.
+
+**Output:**
+- Visit status updated to Cancelled.
+- Cancellation information recorded.
+
+#### FR-041: Visit Purpose Management
+
+**Description:**
+
+The system shall allow Account Managers to select a predefined visit purpose category and provide additional notes.
+
+**Proposed Visit Purpose Categories:**
+- Customer Relationship Management.
+- Business Opportunity Discussion.
+- Service Review.
+- Complaint Handling.
+- Contract Discussion.
+- New Business Development.
+- Other.
+
+**Business Rules:**
+- Account Managers must select one visit purpose category.
+- Additional notes may be entered to provide more context.
+- When Other is selected, additional notes should explain the visit purpose.
+
+**Output:**
+- Selected visit purpose category.
+- Additional visit description.
+
+### 4.5 Business Rules
+
+- Every visit schedule must be associated with a valid customer.
+- Every visit schedule must have an assigned Account Manager.
+- Each customer may have only one active scheduled visit per calendar date.
+- Visit date and time are mandatory.
+- Visit purpose category is mandatory.
+- Additional notes are optional except when Other is selected.
+- Rescheduling and cancellation are restricted to authorized users.
+- Changes to visit schedules must be recorded in the audit log.
+- Visit schedules must be available to authorized users through the centralized system.
+
+### 4.6 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Account Managers can access the monthly calendar.
+- Account Managers can create customer visit schedules.
+- The system prevents duplicate active visit schedules for the same customer on the same date.
+- Visit schedules are displayed on the correct calendar dates.
+- Authorized Account Managers and Sales Managers can reschedule visits.
+- Authorized Account Managers and Sales Managers can cancel visits.
+- The system records cancellation reasons.
+- Visit purpose categories can be selected.
+- Additional visit notes can be entered.
+- Schedule changes are recorded for audit purposes.
+
+---
 
 ---
 
