@@ -1691,6 +1691,106 @@ The module will be considered acceptable when:
 
 ---
 
+## 9. API Integration & Connectivity Management
+
+### 9.1 Module Overview
+
+This module manages data communication between the Android Mobile Application, centralized backend services, and Web Application through REST APIs.
+
+The system shall operate in online mode. If data submission fails due to connectivity issues or API errors, Account Managers must manually retry the submission.
+
+Offline data storage and automatic background synchronization are not included in the project scope.
+
+### 9.2 Functional Requirements
+
+#### FR-070: API Submission Error Handling
+
+**Description:**
+
+The Android application shall detect and handle failed data submission requests to the backend API.
+
+**Process:**
+1. Account Manager submits visit information.
+2. Android sends the request to the backend API.
+3. If the request fails due to connectivity or API errors, the application displays an appropriate error notification.
+4. The application informs the Account Manager that the submission has not been confirmed.
+5. The Account Manager may retry the submission after checking the connection.
+
+**Business Rules:**
+- Active internet connectivity is required for data submission.
+- The application shall not automatically store failed submissions for later synchronization.
+- Failed submissions must display an appropriate error message.
+- The application must distinguish between successful, failed, and unconfirmed submissions.
+- Data must not be displayed as successfully submitted until the backend confirms the transaction.
+
+#### FR-071: Manual Data Submission Retry
+
+**Description:**
+
+The Android application shall provide a manual Retry function when data submission fails or the transaction result is unconfirmed.
+
+**Process:**
+1. Account Manager receives a submission error notification.
+2. Account Manager checks the internet connection.
+3. Account Manager selects Retry.
+4. Android resubmits the original request.
+5. Backend validates the request and checks for duplicate transactions.
+6. Backend processes the request if it has not already been committed.
+7. Android displays the submission result.
+
+**Business Rules:**
+- Retry must be initiated manually by the Account Manager.
+- The system shall not automatically retry failed requests.
+- Retry must use the same unique request identifier for the original submission.
+- Backend processing must prevent duplicate records when the same request is submitted multiple times.
+- Previously committed transactions must not be duplicated.
+- The system must provide clear submission status feedback.
+
+#### FR-072: Centralized API Data Integration
+
+**Description:**
+
+The system shall use centralized backend APIs to manage data communication between Android and Web applications.
+
+**Process:**
+1. Android submits authorized data through REST API endpoints.
+2. Backend authenticates the request.
+3. Backend validates submitted information.
+4. Backend processes and stores valid data in the centralized database.
+5. Backend returns a transaction response.
+6. Web Application retrieves updated information through authorized backend APIs.
+
+**Business Rules:**
+- Android shall not connect directly to the centralized database.
+- Web Application shall retrieve data through authorized backend APIs.
+- Successfully committed data must become available to authorized Web users without manual data transfer.
+- API requests must enforce authentication and role-based authorization.
+- Failed database transactions must not return a successful submission response.
+- Data retrieval must respect user access permissions.
+
+### 9.3 Non-Functional Requirements
+
+- API communication shall use secure HTTPS connections.
+- The backend shall validate all incoming API requests.
+- API responses shall provide appropriate HTTP status codes.
+- The system shall protect against duplicate transaction submissions.
+- API errors shall be logged for troubleshooting.
+- The system shall maintain data consistency between Android, backend, database, and Web applications.
+
+### 9.4 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Android can submit data through authorized REST API endpoints.
+- Failed submissions display appropriate error notifications.
+- Account Managers can manually retry failed submissions.
+- The application does not automatically submit failed requests.
+- The backend prevents duplicate transactions during retry.
+- Successful transactions are confirmed by the backend.
+- Successfully saved data becomes available to authorized Web users.
+- Unauthorized API requests are rejected.
+- Offline data synchronization is not performed.
+
 
 
 ---
