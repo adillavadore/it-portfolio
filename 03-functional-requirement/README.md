@@ -956,3 +956,229 @@ The module will be considered acceptable when:
 
 ---
 
+## 6. Visit Activity Recording & Follow-up Management
+
+### 6.1 Module Overview
+
+This module enables Account Managers to record customer visit results, document meeting notes, attach supporting evidence, and create follow-up activities through the Android Mobile Application.
+
+The system ensures that every customer visit is properly documented and has a corresponding follow-up action.
+
+Visit information shall be available to authorized users through the Web Application.
+
+### 6.2 Visit Activity Information
+
+| Field | Description |
+|---|---|
+| Visit ID | Unique visit identifier |
+| Customer ID | Customer identifier |
+| Customer Name | Customer name |
+| Account Manager | Responsible employee |
+| Visit Date | Actual visit date |
+| Visit Outcome | Result of customer visit |
+| Visit Notes | Free-text meeting notes |
+| Follow-up Action | Required next action |
+| Follow-up Due Date | Expected follow-up date |
+| Attachment | Supporting photo or document |
+| Check-in Timestamp | Actual check-in time |
+| Check-out Timestamp | Actual check-out time |
+| Visit Status | Current visit status |
+
+### 6.3 Visit Outcome Classification
+
+The system shall provide the following visit outcome categories:
+
+| Outcome | Description |
+|---|---|
+| Successful | Customer meeting successfully conducted |
+| No Response | Customer was unavailable or did not respond |
+| Reschedule | Customer meeting needs to be rescheduled |
+| Not Interested | Customer indicates no interest in the proposed business |
+| Business Opportunity | Potential business opportunity identified |
+| Complaint | Customer submitted a complaint |
+| Other | Other visit outcomes not covered by the predefined categories |
+
+### 6.4 Functional Requirements
+
+#### FR-048: Record Visit Outcome
+
+**Description:**
+
+The system shall allow Account Managers to record the outcome of customer visits through the Android application.
+
+**Input:**
+- Visit ID.
+- Visit outcome category.
+- Visit notes.
+
+**Process:**
+1. Account Manager opens the active visit record.
+2. Account Manager selects a visit outcome category.
+3. Account Manager enters meeting notes.
+4. System validates the submitted information.
+5. System saves the visit activity record.
+
+**Output:**
+- Visit outcome recorded.
+- Visit notes stored.
+- Visit activity updated.
+
+**Business Rules:**
+- Visit outcome is mandatory.
+- Account Manager must select one predefined outcome category.
+- Visit notes shall support free-text input.
+- The Other category should include an explanation in the visit notes.
+
+#### FR-049: Record Visit Notes
+
+**Description:**
+
+The system shall allow Account Managers to document customer meeting results through free-text input.
+
+**Information may include:**
+- Meeting discussion.
+- Customer requirements.
+- Customer feedback.
+- Business opportunities.
+- Service concerns.
+- Agreed actions.
+
+**Business Rules:**
+- Visit notes are mandatory.
+- Visit notes must be associated with the relevant Visit ID.
+- Notes must be available to authorized users through the Web Application.
+
+#### FR-050: Create Follow-up Activity
+
+**Description:**
+
+The system shall require Account Managers to create a follow-up activity for every recorded customer visit.
+
+**Input:**
+- Follow-up action.
+- Follow-up due date.
+
+**Process:**
+1. Account Manager completes the visit outcome and notes.
+2. Account Manager enters the required follow-up action.
+3. Account Manager selects a follow-up due date.
+4. System validates the follow-up information.
+5. System saves the follow-up activity.
+6. The follow-up activity becomes available for monitoring.
+
+**Business Rules:**
+- Every customer visit must have at least one follow-up activity.
+- Follow-up action is mandatory.
+- Follow-up due date is mandatory.
+- Follow-up activities must be associated with the relevant Visit ID and customer.
+- Follow-up information must be available to authorized Sales Managers.
+- Follow-up completion status must be trackable.
+
+#### FR-051: Upload Visit Attachment
+
+**Description:**
+
+The system shall require Account Managers to upload at least one supporting attachment for every customer visit.
+
+**Supported Attachment Types (Proposed):**
+- JPG
+- JPEG
+- PNG
+- PDF
+
+**Process:**
+1. Account Manager opens the visit activity form.
+2. Account Manager selects an attachment from the device or captures a photo.
+3. System validates the attachment format and file size.
+4. System associates the attachment with the relevant Visit ID.
+5. System stores the attachment reference.
+
+**Business Rules:**
+- At least one attachment is mandatory for every visit.
+- Multiple attachments may be supported.
+- Attachment formats must follow configured system restrictions.
+- Attachments must be accessible only to authorized users.
+- Attachment upload must be completed before the visit record can be finalized.
+
+#### FR-052: Update Follow-up Status
+
+**Description:**
+
+The system shall allow authorized users to update and monitor follow-up activity status.
+
+**Proposed Follow-up Statuses:**
+- Pending
+- In Progress
+- Completed
+- Overdue
+- Cancelled
+
+**Process:**
+1. Authorized user opens the follow-up record.
+2. User reviews the follow-up information.
+3. User updates the follow-up status.
+4. System saves the updated status.
+5. Updated information becomes available on the Web Application.
+
+**Business Rules:**
+- Each follow-up activity must have a defined status.
+- Completed follow-ups must retain completion information.
+- Overdue status should be determined based on the due date and completion status.
+- Follow-up status changes must be recorded.
+
+#### FR-053: View Visit Activity History
+
+**Description:**
+
+The system shall allow authorized users to view historical customer visit activities through the Web Application.
+
+**Information to be displayed:**
+- Customer information.
+- Account Manager information.
+- Visit date.
+- Visit outcome.
+- Visit notes.
+- Follow-up action.
+- Follow-up due date.
+- Follow-up status.
+- Supporting attachments.
+- GPS check-in and check-out information.
+
+**Output:**
+- Consolidated customer visit history.
+- Visit activity details.
+- Follow-up activity information.
+- Supporting attachment references.
+
+### 6.5 Business Rules
+
+- Every visit must have a recorded outcome.
+- Every visit must contain visit notes.
+- Every visit must have at least one follow-up activity.
+- Every visit must have at least one supporting attachment.
+- Follow-up activities must have an action and due date.
+- Visit activities must be associated with a valid customer and Account Manager.
+- Visit records must retain their historical information.
+- Authorized Sales Managers may monitor team visit activities and follow-up progress.
+- Attachments and visit records must be protected against unauthorized access.
+
+### 6.6 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Account Managers can record customer visit outcomes.
+- All predefined visit outcome categories are available.
+- Account Managers can enter free-text visit notes.
+- The system requires visit notes before final submission.
+- The system requires at least one follow-up activity.
+- Follow-up action and due date are mandatory.
+- The system requires at least one supporting attachment.
+- The system validates permitted attachment formats.
+- Follow-up activities can be monitored and updated.
+- Authorized users can view historical visit activities through the Web Application.
+- Visit information and attachments are associated with the correct customer and Visit ID.
+
+
+
+---
+
