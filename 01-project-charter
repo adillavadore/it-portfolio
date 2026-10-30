@@ -1,0 +1,55 @@
+# Project Charter
+## Logistics Shipment Tracking System
+
+### 1. Project Overview
+This project aims to develop a centralized shipment tracking system that allows customers and internal operational teams to monitor shipment status throughout the delivery process.
+
+### 2. Business Problem
+The existing shipment tracking process may involve fragmented information, manual status updates, and limited shipment visibility for customers.
+
+### 3. Project Objectives
+- Improve shipment visibility.
+- Provide real-time or timely shipment status updates.
+- Reduce customer inquiries related to shipment status.
+- Improve operational monitoring and efficiency.
+
+### 4. Project Scope
+
+**In Scope**
+- Shipment tracking by tracking number.
+- Shipment status monitoring.
+- Delivery status updates.
+- Customer tracking interface.
+- Internal operational monitoring.
+
+**Out of Scope**
+- Payment gateway integration.
+- Warehouse inventory management.
+- Route optimization.
+
+### 5. Key Stakeholders
+- Project Sponsor
+- IT Project Manager
+- Business Analyst
+- System Analyst
+- Development Team
+- Operations Team
+- Customer Service Team
+- Customers
+
+### 6. Expected Deliverables
+- Business Requirement Document (BRD)
+- Functional Requirement Specification (FRS)
+- Business Process Flow
+- System Architecture
+- Project Plan
+- Testing Documentation
+
+### 7. Success Criteria
+- Customers can check shipment status using a tracking number.
+- Internal teams can monitor shipment progress.
+- Shipment information is consistently updated.
+- Customer inquiries related to tracking are reduced.
+
+### 8. Project Assumptions
+This is a simulated portfolio project. All business scenarios and requirements are fictional and created for demonstration purposes.
