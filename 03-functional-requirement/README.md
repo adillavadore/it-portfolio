@@ -1791,6 +1791,84 @@ The module will be considered acceptable when:
 - Unauthorized API requests are rejected.
 - Offline data synchronization is not performed.
 
+---
+
+## 10. Sales Planning — Customer and Sales Mapping Management
+
+### 10.1 Module Overview
+
+This module enables authorized Sales Planning users to manage customer-to-sales and sales-to-employee mapping information.
+
+The system uses two mapping levels to determine customer ownership and Account Manager access.
+
+### 10.2 Mapping Structure
+
+**Mapping 1: Customer Account Number to Sales ID**
+
+Determines which Sales ID is assigned to each customer account.
+
+**Mapping 2: Sales ID to Employee ID**
+
+Determines which employee is responsible for each Sales ID.
+
+The Account Manager responsible for a customer is determined through the combination of these two mappings.
+
+### 10.3 Functional Requirements
+
+#### FR-073: Customer Account Number to Sales ID Mapping
+
+The system shall allow authorized Sales Planning users to create and update customer Account Number to Sales ID mapping.
+
+**Business Rules:**
+- Each customer Account Number must have an assigned Sales ID.
+- Mapping changes must be performed by authorized Sales Planning users.
+- Changes must immediately update the customer's sales assignment.
+- Mapping changes must be recorded in the audit log.
+
+#### FR-074: Sales ID to Employee ID Mapping
+
+The system shall allow authorized Sales Planning users to create and update Sales ID to Employee ID mapping.
+
+**Business Rules:**
+- Each active Sales ID must have an assigned Employee ID.
+- AM user access must already exist before reassignment.
+- When Employee ID changes while Sales ID remains unchanged, all customers associated with that Sales ID shall automatically follow the new Employee ID.
+- The new Account Manager must receive the appropriate customer access.
+- The previous Account Manager must lose access unless separately authorized.
+- Mapping changes must be recorded in the audit log.
+
+#### FR-075: Customer Ownership Determination
+
+The system shall determine customer ownership based on the active Account Number to Sales ID and Sales ID to Employee ID mappings.
+
+**Business Rules:**
+- Customer ownership must follow the latest valid mapping.
+- If neither mapping changes, customer ownership remains unchanged.
+- If Account Number to Sales ID mapping changes, customer assignment follows the new Sales ID and its assigned Employee ID.
+- If Employee ID changes while Sales ID remains unchanged, all associated customers follow the new Employee ID.
+- Historical visit records must retain the identity of the employee who performed the visit.
+
+#### FR-076: Mapping Change Audit Trail
+
+The system shall record all mapping changes performed by Sales Planning.
+
+**Audit Information:**
+- Mapping type.
+- Previous mapping value.
+- New mapping value.
+- User performing the change.
+- Change timestamp.
+
+### 10.4 Acceptance Criteria
+
+- Authorized Sales Planning users can manage both mapping types.
+- Customer ownership is determined correctly from both mapping levels.
+- Employee reassignment updates customer ownership immediately.
+- Customer reassignment through Account Number mapping follows the new Sales ID.
+- Unauthorized users cannot modify mapping records.
+- Historical visit records remain associated with the original visiting employee.
+- All mapping changes are available in the audit trail.
+
 
 
 ---
