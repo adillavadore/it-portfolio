@@ -31,7 +31,7 @@ The purpose is to ensure that every approved business requirement is translated 
 | BR-010 | Visit report export | FR-063, FR-066 | Generate and Export Visit Activity Report | Verify Excel visit report generation |
 | BR-011 | Customer report export | FR-064, FR-067 | Generate and Export Customer Report | Verify Excel customer report generation |
 | BR-012 | Role-based access | FR-003, FR-068 | Role-Based Access Control | Verify user access restrictions |
-| BR-013 | Centralized data synchronization | Pending confirmation | Android and Web data synchronization | Verify data consistency across platforms |
+| BR-013 | Real-time data synchronization between Android and Web applications through a centralized backend and database using REST APIs |
 
 ## 3. Test Scenario Summary
 
