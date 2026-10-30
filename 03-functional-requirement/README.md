@@ -1427,6 +1427,269 @@ The module will be considered acceptable when:
 - Users can navigate from KPI summaries to relevant detailed records.
 - Dashboard data follows assigned user permissions.
 
+---
+
+## 8. Reporting & Excel Export
+
+### 8.1 Module Overview
+
+This module provides reporting capabilities through the Web Application, enabling authorized users to view, filter, and export sales activity and customer information into Microsoft Excel-compatible files.
+
+The module consists of two main reports:
+
+- Visit Activity Report.
+- Customer Report.
+
+Report access and data visibility shall follow the user's assigned role and data authorization.
+
+### 8.2 Report Types
+
+#### A. Visit Activity Report
+
+The Visit Activity Report provides detailed information about Account Manager customer visits.
+
+**Report Columns:**
+
+| Field | Description |
+|---|---|
+| Visit Date | Actual customer visit date |
+| Account Manager | Employee responsible for the visit |
+| Customer Name | Customer or company name |
+| Visit Outcome | Recorded visit result |
+| Visit Notes | Customer meeting notes |
+| GPS Check-in | Check-in timestamp and location information |
+| GPS Check-out | Check-out timestamp and location information |
+| Follow-up | Recorded follow-up action |
+| Follow-up Status | Current follow-up status |
+| GPS Coordinates | Recorded GPS latitude and longitude |
+
+#### B. Customer Report
+
+The Customer Report provides consolidated customer information and Account Manager assignment details.
+
+**Report Columns:**
+
+| Field | Description |
+|---|---|
+| Customer ID | Unique customer identifier |
+| Customer Name | Customer or company name |
+| Customer Address | Customer business address |
+| Customer Status | Current customer status |
+| Account Manager | Assigned Account Manager |
+| Last Visit Date | Date of the most recent recorded customer visit |
+| Contact Person | Main customer contact |
+| Sales ID | Assigned sales identifier |
+| Contact Number | Customer contact number |
+| Email Address | Customer email address |
+
+### 8.3 Functional Requirements
+
+#### FR-062: Access Reporting Module
+
+**Description:**
+
+The Web Application shall provide a reporting module for authorized users.
+
+**Process:**
+1. User logs in to the Web Application.
+2. User opens the Reporting menu.
+3. System validates the user's role and reporting permissions.
+4. System displays available report types.
+5. User selects the required report.
+
+**Output:**
+- Available report types based on user authorization.
+
+#### FR-063: Generate Visit Activity Report
+
+**Description:**
+
+The system shall generate a Visit Activity Report based on available visit records and selected reporting criteria.
+
+**Input:**
+- Date range.
+- Account Manager.
+- Customer name.
+- Visit outcome.
+- Follow-up status.
+
+**Process:**
+1. User selects Visit Activity Report.
+2. User enters or selects the required filters.
+3. System validates the selected criteria.
+4. System retrieves matching visit records.
+5. System applies user data permissions.
+6. System displays the report preview.
+
+**Output:**
+- Visit Activity Report containing the agreed report columns.
+- Filtered visit records.
+
+#### FR-064: Generate Customer Report
+
+**Description:**
+
+The system shall generate a Customer Report based on available customer records and selected reporting criteria.
+
+**Input:**
+- Customer status.
+- Account Manager.
+- Customer name.
+
+**Process:**
+1. User selects Customer Report.
+2. User enters or selects the required filters.
+3. System validates the selected criteria.
+4. System retrieves matching customer records.
+5. System applies user data permissions.
+6. System displays the report preview.
+
+**Output:**
+- Customer Report containing the agreed report columns.
+- Filtered customer records.
+
+#### FR-065: Filter and Search Reports
+
+**Description:**
+
+The system shall provide filtering and search functionality for reporting data.
+
+**Visit Activity Report Filters:**
+- Date Range.
+- Account Manager.
+- Customer Name.
+- Visit Outcome.
+- Follow-up Status.
+
+**Customer Report Filters:**
+- Customer Status.
+- Account Manager.
+- Customer Name.
+
+**Business Rules:**
+- Users may apply one or more available filters.
+- The system shall retrieve records matching the selected criteria.
+- Filter results must follow user data permissions.
+- The report preview must reflect the selected filters.
+
+#### FR-066: Export Visit Activity Report to Excel
+
+**Description:**
+
+The system shall allow authorized users to export the Visit Activity Report into an Excel-compatible file.
+
+**Process:**
+1. User generates a Visit Activity Report.
+2. User reviews the report preview.
+3. User selects Export to Excel.
+4. System validates export authorization.
+5. System generates the Excel file.
+6. System provides the generated file for download.
+
+**Output:**
+- Downloadable Visit Activity Report in Excel-compatible format.
+
+**Business Rules:**
+- Exported columns must follow the approved Visit Activity Report structure.
+- Exported records must match the selected reporting filters.
+- Exported data must follow the user's access permissions.
+- GPS coordinates must be included in the exported report.
+
+#### FR-067: Export Customer Report to Excel
+
+**Description:**
+
+The system shall allow authorized users to export the Customer Report into an Excel-compatible file.
+
+**Process:**
+1. User generates a Customer Report.
+2. User reviews the report preview.
+3. User selects Export to Excel.
+4. System validates export authorization.
+5. System generates the Excel file.
+6. System provides the generated file for download.
+
+**Output:**
+- Downloadable Customer Report in Excel-compatible format.
+
+**Business Rules:**
+- Exported columns must follow the approved Customer Report structure.
+- Exported records must match the selected reporting filters.
+- Exported customer data must follow user access permissions.
+- Customer information must reflect the latest authorized customer records.
+
+#### FR-068: Role-Based Reporting Authorization
+
+**Description:**
+
+The system shall control report access, data visibility, and Excel export permissions according to assigned user roles and data assignments.
+
+**Proposed Authorization Overview:**
+
+| User Role | Visit Report | Customer Report |
+|---|---|---|
+| Account Manager | Assigned visits | Assigned customers |
+| Sales Manager | Authorized team visits | Authorized team customers |
+| Management | Authorized consolidated data | Authorized consolidated data |
+| Administrator | According to assigned permissions | According to assigned permissions |
+
+**Business Rules:**
+- Users must have valid authentication before accessing reports.
+- Report visibility must follow assigned user roles and data permissions.
+- Account Managers must only access authorized customer and visit records.
+- Sales Managers must only access authorized team data.
+- Management access must follow assigned permissions.
+- Administrator access must follow explicitly configured permissions.
+- Unauthorized export requests must be rejected.
+- Exported files must not contain records outside the user's authorized data scope.
+
+#### FR-069: Report Data Validation
+
+**Description:**
+
+The system shall validate report data before displaying and exporting reports.
+
+**Validation Rules:**
+- Report records must be retrieved from authorized data sources.
+- Report filters must be applied consistently.
+- Visit information must be associated with the correct Visit ID.
+- Customer information must be associated with the correct Customer ID.
+- GPS coordinates must be linked to the corresponding visit.
+- Follow-up information must be linked to the relevant visit.
+- The system shall handle reports with no matching records by displaying an appropriate message.
+
+### 8.4 Business Rules
+
+- The Web Application is the primary platform for report access and export.
+- Two report types must be available: Visit Activity Report and Customer Report.
+- Both reports must support Excel-compatible export.
+- Report columns must follow the approved business requirements.
+- Report filters must apply to the relevant report type.
+- All report access must follow role-based authorization.
+- Exported information must follow the same data visibility restrictions as the report preview.
+- Customer and employee information must be protected against unauthorized disclosure.
+- GPS information must only be available to authorized users.
+- The system must maintain appropriate audit records for report exports.
+
+### 8.5 Acceptance Criteria
+
+The module will be considered acceptable when:
+
+- Authorized users can access the Reporting module.
+- Users can generate Visit Activity Reports.
+- Users can generate Customer Reports.
+- Visit Activity Reports display all approved columns.
+- Customer Reports display all approved columns.
+- Users can filter reports according to available criteria.
+- Report previews reflect selected filters.
+- Authorized users can export Visit Activity Reports to Excel.
+- Authorized users can export Customer Reports to Excel.
+- Exported files contain the correct filtered records.
+- Exported files respect user role and data permissions.
+- Unauthorized export requests are rejected.
+- The system handles reports with no matching records appropriately.
+
+---
 
 
 
